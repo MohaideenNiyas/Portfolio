@@ -1,29 +1,51 @@
 // src/components/About.jsx
-import '../index.css';
+import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <section id="about" className="about">
-      <div className="section-header">
-        <h2 className="section-title">About Me</h2>
-      </div>
-      <div className="about-content">
-        <div className="about-image">
-          <img src="/image.png" alt="Mohaideen Niyas - AI Engineer" />
-        </div>
-        <div className="about-text">
-          <h3>AI & Data Science Enthusiast</h3>
-          <p>
-            I'm currently pursuing a B.Tech in Artificial Intelligence and Data Science at Anna University Regional Campus, Coimbatore, with a GPA of 8.13. My academic and project experiences are focused on applying AI technologies to build innovative and practical solutions.
+    <section id="about" className="bg-gray-900 text-white py-24 px-6">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        
+        {/* Left: Text */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl font-extrabold mb-6 border-l-4 border-blue-500 pl-4">
+            About Me
+          </h2>
+          <p className="text-gray-400 text-lg mb-4 leading-relaxed">
+            I'm <span className="text-blue-400 font-semibold">Mohaideen Niyas</span>, an AI & Data Science undergraduate passionate about
+            <span className="text-blue-400 font-semibold"> Machine Learning</span>,
+            <span className="text-blue-400 font-semibold"> Deep Learning</span>, and
+            <span className="text-blue-400 font-semibold"> Full Stack Web Development</span>.
           </p>
-          <p>
-            I've participated in national-level hackathons like NITK Hackathon 2024, where we developed a real-time equity analysis tool combining market sentiment and sustainability metrics. I also interned at Skypark Itech IT Solutions, where I gained hands-on experience in front-end and back-end development, especially in game logic and responsive GUI design.
+          <p className="text-gray-400 text-base mb-4 leading-relaxed">
+            I specialize in creating data-driven applications and intelligent systems using
+            tools like <span className="text-blue-400 font-semibold">Python, TensorFlow, PyTorch</span>, and
+            <span className="text-blue-400 font-semibold"> React</span>. Whether it's building scalable APIs,
+            designing responsive UIs, or training deep learning models, I aim to bridge the gap between
+            research and real-world deployment.
           </p>
-          <p>
-            My passion lies in turning AI concepts into impactful applications, especially in areas like computer vision, deep learning, and conversational AI. When I'm not building or experimenting, I'm usually exploring new tech trends and tools.
+          <p className="text-gray-400 text-base leading-relaxed">
+            I'm always exploring new technologies and thrive in hackathons, internships, and team-based environments.
           </p>
-          <a href="#contact" className="btn btn-primary">Let's Connect</a>
-        </div>
+        </motion.div>
+
+        {/* Right: Image */}
+        <motion.div
+          className="flex justify-center"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <img
+            src="https://cdni.iconscout.com/illustration/premium/thumb/machine-learning-5582494-4655807.png"
+            alt="AI Developer Illustration"
+            className="w-80 h-auto rounded-lg shadow-xl"
+          />
+        </motion.div>
       </div>
     </section>
   );

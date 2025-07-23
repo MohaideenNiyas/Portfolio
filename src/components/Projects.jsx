@@ -1,92 +1,69 @@
 // src/components/Projects.jsx
-import '../index.css';
-import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+
 const projects = [
   {
-    title: 'Chatbot & Companion App',
-    category: 'Full Stack',
-    description:
-      'Developed a simple chatbot using Flask, Node.js, and MySQL to handle user queries, accompanied by a frontend app for user interaction.',
-    image: '/chatbot.png',
-    links: [
-      { text: 'GitHub', url: '#' },
-      { text: 'Live Demo', url: '#' },
-    ],
+    title: 'DL Model for Art Recognition',
+    tech: 'Python, Flask',
+    date: 'Nov 2024',
+    description: `Developed a deep learning model using ResNet101 for real-time classification of Edvard Munch’s paintings.
+Integrated Google APIs to enrich predictions with historical and contextual data.`,
+    github: 'https://github.com/MohaideenNiyas/ResNet101-Based-Painting-Classifier.git',
   },
   {
-    title: 'Art Recognition (ResNet101)',
-    category: 'Deep Learning',
-    description:
-      'Built a DL model using ResNet101 to recognize Edvard Munch’s artworks. Integrated Google APIs for historical context and achieved high accuracy.',
-    image: '/project-art.png',
-    links: [
-      { text: 'GitHub', url: '#' },
-      { text: 'Details', url: '#' },
-    ],
+    title: 'AI-Powered WarZone Reporter (ConflictCast)',
+    tech: 'Flask, MistralAI, Groq, Zyphra Voice',
+    date: 'July 2025',
+    description: `OCR-powered app that transforms newspaper images into audio war reports using NLP, voice synthesis, and contextual analysis. Outputs dramatic, emotionally-infused correspondent scripts.`,
+    github: 'https://github.com/MohaideenNiyas/OCR.git',
   },
   {
-    title: 'Handwriting Recognition',
-    category: 'Machine Learning',
-    description:
-      'Created an ML model with CNNs using TensorFlow and Keras to recognize handwritten digits and characters with high accuracy.',
-    image: '/handwriting.png',
-    links: [
-      { text: 'GitHub', url: '#' },
-      { text: 'Demo', url: '#' },
-    ],
+    title: 'ML Model for Handwriting Recognition',
+    tech: 'TensorFlow, Keras',
+    date: 'May 2024',
+    description: `Created an ML model using CNN for handwritten digit and character recognition with high accuracy.`,
   },
 ];
 
 const Projects = () => {
-    useEffect(() => {
-    const faders = document.querySelectorAll('.fade-in');
-
-    const appearOptions = {
-      threshold: 0.2,
-      rootMargin: '0px 0px -50px 0px',
-    };
-
-    const appearOnScroll = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      });
-    }, appearOptions);
-
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
-    });
-
-    return () => {
-      faders.forEach(fader => appearOnScroll.unobserve(fader));
-    };
-  }, []);
   return (
-    <section id="projects" className="projects">
-      <div className="section-header">
-        <h2 className="section-title">Featured Projects</h2>
-      </div>
-      <div className="projects-grid">
-        {projects.map((project, idx) => (
-          <div className="project-card fade-in" key={idx}>
-            <div className="project-image">
-              <img src={project.image} alt={project.title} />
-            </div>
-            <div className="project-content">
-              <div className="project-category">{project.category}</div>
-              <h3 className="project-title">{project.title}</h3>
-              <p className="project-description">{project.description}</p>
-              <div className="project-links">
-                {project.links.map((link, i) => (
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" key={i}>
-                    {link.text}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))}
+    <section id="projects" className="bg-gray-900 text-white py-20 px-6">
+      <div className="max-w-6xl mx-auto text-center">
+        <motion.h2
+          className="text-4xl font-bold mb-10"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Projects
+        </motion.h2>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              className="bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-blue-700 transition-shadow duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+            >
+              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+              <p className="text-sm text-gray-400 mb-1">{project.date}</p>
+              <p className="text-sm text-blue-400 mb-3">{project.tech}</p>
+              <p className="text-gray-300 text-sm mb-3">{project.description}</p>
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 text-sm hover:underline"
+                >
+                  🔗 View on GitHub
+                </a>
+              )}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

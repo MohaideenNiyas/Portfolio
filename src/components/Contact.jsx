@@ -1,76 +1,84 @@
 // src/components/Contact.jsx
-import '../index.css';
+import { motion } from 'framer-motion';
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Contact = () => {
   return (
-    <section id="contact" className="contact">
-      <div className="section-header">
-        <h2 className="section-title">Get In Touch</h2>
-      </div>
-      <div className="contact-container">
-        <div className="contact-info">
-          <h3>Let's Discuss Your Project</h3>
-          <p>I'm always open to discussing new ideas, projects, or opportunities to collaborate in AI and software development.</p>
+    <section id="contact" className="bg-gray-900 text-white py-20 px-6">
+      <div className="max-w-6xl mx-auto">
+        <motion.h2
+          className="text-4xl font-bold text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Contact Me
+        </motion.h2>
 
-          <div className="contact-item">
-            <div className="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-            </div>
-            <div className="contact-text">
-              <h4>Email</h4>
-              <p>mohaideenniyas04@gmail.com</p>
-            </div>
-          </div>
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-gray-300 mb-6">
+              I'm always open to discussing new projects, tech collaborations, or opportunities in AI and Full Stack Development.
+            </p>
 
-          <div className="contact-item">
-            <div className="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72..." />
-              </svg>
+            <div className="space-y-6 text-gray-300">
+              <div className="flex items-center gap-4">
+                <FaEnvelope className="text-blue-400" />
+                <span>mohaideenniyas04@gmail.com</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <FaPhoneAlt className="text-blue-400" />
+                <span>+91 74189 71997</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <FaMapMarkerAlt className="text-blue-400" />
+                <span>Tirunelveli, Tamil Nadu, India</span>
+              </div>
             </div>
-            <div className="contact-text">
-              <h4>Phone</h4>
-              <p>+91 7418971997</p>
-            </div>
-          </div>
+          </motion.div>
 
-          <div className="contact-item">
-            <div className="contact-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-            </div>
-            <div className="contact-text">
-              <h4>Location</h4>
-              <p>Coimbatore, Tamil Nadu, India</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="contact-form">
-          <form id="contactForm" onSubmit={(e) => { e.preventDefault(); alert("Message sent! (demo only)"); e.target.reset(); }}>
-            <div className="form-group">
-              <label htmlFor="name" className="form-label">Your Name</label>
-              <input type="text" id="name" className="form-control" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email" className="form-label">Your Email</label>
-              <input type="email" id="email" className="form-control" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="subject" className="form-label">Subject</label>
-              <input type="text" id="subject" className="form-control" required />
-            </div>
-            <div className="form-group">
-              <label htmlFor="message" className="form-label">Your Message</label>
-              <textarea id="message" className="form-control" required></textarea>
-            </div>
-            <button type="submit" className="btn btn-primary btn-block">Send Message</button>
-          </form>
+          {/* Contact Form */}
+          <motion.form
+            action="https://getform.io/f/avrygmpa" // update this to your Formspree or backend
+            method="POST"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+              className="w-full bg-gray-800 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+              className="w-full bg-gray-800 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500"
+            />
+            <textarea
+              name="message"
+              rows="5"
+              placeholder="Your Message"
+              required
+              className="w-full bg-gray-800 text-white border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500"
+            ></textarea>
+            <button
+              type="submit"
+              className="bg-blue-600 hover:bg-blue-700 transition px-6 py-3 rounded-lg font-semibold text-white shadow"
+            >
+              Send Message
+            </button>
+          </motion.form>
         </div>
       </div>
     </section>
